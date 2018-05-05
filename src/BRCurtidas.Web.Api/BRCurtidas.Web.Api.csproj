@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BRCurtidas.Common\BRCurtidas.Common.csproj" />
     <ProjectReference Include="..\BRCurtidas.Data\BRCurtidas.Data.csproj" />
+    <ProjectReference Include="..\BRCurtidas.PagSeguroClient\BRCurtidas.PagSeguro.csproj" />
   </ItemGroup>
 
 </Project>

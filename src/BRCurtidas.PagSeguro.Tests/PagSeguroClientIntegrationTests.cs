@@ -52,7 +52,7 @@ namespace BRCurtidas.PagSeguro.Tests
 
             var credentials = new PagSeguroCredentials(email, token);
             var client = new PagSeguroClient(url, credentials);
-            var response = await client.CreateCheckout(request);
+            var response = await client.CreateCheckoutAsync(request);
 
             response.Code.Should().NotBeNullOrWhiteSpace();
             response.Date.Should().BeOnOrAfter(requestDate.Date);

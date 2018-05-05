@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BRCurtidas.Data;
+using BRCurtidas.PagSeguro;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,16 @@ namespace BRCurtidas.Web.Api
         {
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("BRCurtidasDatabase")));
+
+            services.AddTransient<IPagSeguroClient>(_ =>
+            {
+                var url = Configuration["PagSeguro:Url"];
+                var email = Configuration["PagSeguro:Email"];
+                var token = Configuration["PagSeguro:Token"];
+                var credentials = new PagSeguroCredentials(email, token);
+
+                return new PagSeguroClient(url, credentials);
+            });
 
             services.AddAutoMapper();
             services.AddMvc();

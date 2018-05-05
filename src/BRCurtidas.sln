@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BRCurtidas.Web.Api", "BRCur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BRCurtidas.Web.Api.Tests", "BRCurtidas.Web.Api.Tests\BRCurtidas.Web.Api.Tests.csproj", "{570C6FF9-65A3-4B22-A4C0-985534D809E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BRCurtidas.PagSeguro", "BRCurtidas.PagSeguroClient\BRCurtidas.PagSeguro.csproj", "{9A3FABC1-978C-4C9D-A75E-1125DCE76190}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BRCurtidas.PagSeguro", "BRCurtidas.PagSeguroClient\BRCurtidas.PagSeguro.csproj", "{9A3FABC1-978C-4C9D-A75E-1125DCE76190}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BRCurtidas.PagSeguro.Tests", "BRCurtidas.PagSeguro.Tests\BRCurtidas.PagSeguro.Tests.csproj", "{FAB13272-D572-436A-92F2-970FC4D92053}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BRCurtidas.PagSeguro.Tests", "BRCurtidas.PagSeguro.Tests\BRCurtidas.PagSeguro.Tests.csproj", "{FAB13272-D572-436A-92F2-970FC4D92053}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
