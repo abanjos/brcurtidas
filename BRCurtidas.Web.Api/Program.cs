@@ -12,7 +12,12 @@ namespace BRCurtidas.Web.Api
         public static void Main(string[] args)
         {
             var host = BuildWebHost(args);
+            InitializeDatabase(host);
+            host.Run();
+        }
 
+        private static void InitializeDatabase(IWebHost host)
+        {
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
@@ -28,11 +33,9 @@ namespace BRCurtidas.Web.Api
                     logger.LogError(ex, "An error occurred while seeding the database.");
                 }
             }
-
-            host.Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
+        private static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .Build();
