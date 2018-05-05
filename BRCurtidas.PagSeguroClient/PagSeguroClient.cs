@@ -6,7 +6,7 @@ using System.Web;
 
 namespace BRCurtidas.PagSeguro
 {
-    public class PagSeguroClient
+    public class PagSeguroClient : IPagSeguroClient
     {
         private readonly string _url;
         private readonly PagSeguroCredentials _credentials;
@@ -23,7 +23,7 @@ namespace BRCurtidas.PagSeguro
             _credentials = credentials ?? throw new ArgumentNullException(nameof(credentials));
         }
 
-        public async Task<CheckoutResponse> CreateCheckout(CheckoutRequest request)
+        public async Task<CheckoutResponse> CreateCheckoutAsync(CheckoutRequest request)
         {
             var requestXml = request.SerializeToXml(Encodings.Latin1);
             var requestUrl = $"{_url}/checkout?email={HttpUtility.UrlEncode(_credentials.Email)}&token={_credentials.Token}";
