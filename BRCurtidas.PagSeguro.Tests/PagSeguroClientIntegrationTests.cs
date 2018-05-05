@@ -55,7 +55,7 @@ namespace BRCurtidas.PagSeguro.Tests
             var response = await client.CreateCheckout(request);
 
             response.Code.Should().NotBeNullOrWhiteSpace();
-            response.Date.Should().BeOnOrAfter(requestDate);
+            response.Date.Should().BeOnOrAfter(requestDate.Date);
         }
     }
 }
