@@ -21,4 +21,10 @@
     <ProjectReference Include="..\BRCurtidas.Web.Api\BRCurtidas.Web.Api.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="xunit.runner.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
