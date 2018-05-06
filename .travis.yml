@@ -3,4 +3,4 @@ dotnet: 2.1.4
 dist: trusty
 script:
   - dotnet build ./src/BRCurtidas.sln -c "Release"
-  - dotnet test ./src/BRCurtidas.Web.Api.Tests/bin/Release/netcoreapp2.0/BRCurtidas.Web.Api.Tests.dll
+  - dotnet vstest ./src/BRCurtidas.Web.Api.Tests/bin/Release/netcoreapp2.0/BRCurtidas.Web.Api.Tests.dll
