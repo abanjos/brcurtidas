@@ -34,6 +34,7 @@ namespace BRCurtidas.Web.Api
             });
 
             services.AddAutoMapper();
+
             services.AddMvc();
         }
 
