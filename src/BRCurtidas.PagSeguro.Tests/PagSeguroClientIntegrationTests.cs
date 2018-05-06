@@ -1,3 +1,4 @@
+using dotenv.net;
 using FluentAssertions;
 using System;
 using Xunit;
@@ -6,13 +7,18 @@ namespace BRCurtidas.PagSeguro.Tests
 {
     public class PagSeguroClientIntegrationTests
     {
+        public PagSeguroClientIntegrationTests()
+        {
+            DotEnv.Config();
+        }
+
         [Fact]
         public async void Should_Create_Checkout_Successfully()
         {
-            var requestDate = DateTime.Now;
-            var url = "https://ws.sandbox.pagseguro.uol.com.br/v2";
-            var email = "andrebrandg@gmail.com";
-            var token = "503729758BC54ECFA939244AFEDC77C0";
+            var requestDate = DateTime.Today;
+            var url = Environment.GetEnvironmentVariable("Url");
+            var email = Environment.GetEnvironmentVariable("Email");
+            var token = Environment.GetEnvironmentVariable("Token");
 
             var request = new CheckoutRequest
             {
@@ -55,7 +61,7 @@ namespace BRCurtidas.PagSeguro.Tests
             var response = await client.CreateCheckoutAsync(request);
 
             response.Code.Should().NotBeNullOrWhiteSpace();
-            response.Date.Should().BeOnOrAfter(requestDate.Date);
+            response.Date.Should().BeOnOrAfter(requestDate);
         }
     }
 }
