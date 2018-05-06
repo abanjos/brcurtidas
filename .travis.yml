@@ -2,5 +2,7 @@ language: csharp
 dotnet: 2.1.4
 dist: trusty
 mono: none
+before_install:
+  - chmod +x build.sh
 script:
   - ./build.sh
