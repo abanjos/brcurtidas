@@ -10,7 +10,7 @@ namespace BRCurtidas.Data
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public ServiceCategory Category { get; set; }
+        public ServiceScope Scope { get; set; }
 
         public string Description { get; set; }
 

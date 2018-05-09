@@ -2,7 +2,10 @@
 using BRCurtidas.Data;
 using BRCurtidas.PagSeguro;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,8 +37,22 @@ namespace BRCurtidas.Web.Api
             });
 
             services.AddAutoMapper();
-
             services.AddMvc();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowEverything", builder =>
+                {
+                    builder.AllowAnyHeader();
+                    builder.AllowAnyOrigin();
+                    builder.AllowAnyMethod();
+                });
+            });
+
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new CorsAuthorizationFilterFactory("AllowEverything"));
+            });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -46,6 +63,8 @@ namespace BRCurtidas.Web.Api
             }
 
             app.UseMvc();
+
+            app.UseCors("AllowEverything");
         }
     }
 }
