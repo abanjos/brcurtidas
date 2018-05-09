@@ -21,6 +21,7 @@ namespace BRCurtidas.Web.Api.Tests
                 new Faker<Payment>()
                 .StrictMode(true)
                 .RuleFor(p => p.Id, _ => paymentId++)
+                .RuleFor(p => p.OrderId, _ => order.Id)
                 .RuleFor(p => p.Order, _ => order)
                 .RuleFor(p => p.PaymentMethod, f => f.PickRandom<PaymentMethod>())
                 .RuleFor(p => p.PaymentStatus, f => f.PickRandom<PaymentStatus>())
@@ -106,7 +107,7 @@ namespace BRCurtidas.Web.Api.Tests
                 .RuleFor(s => s.Id, _ => serviceId++)
                 .RuleFor(s => s.Orders, (f, s) => GenerateRandomOrders(s, f.Random.Int(1, 5)).ToList())
                 .RuleFor(s => s.PaymentType, f => f.PickRandom<PaymentType>())
-                .RuleFor(s => s.Category, f => f.PickRandom<ServiceCategory>())
+                .RuleFor(s => s.Scope, f => f.PickRandom<ServiceScope>())
                 .RuleFor(s => s.Price, f => f.Random.Decimal(0, 50))
                 .RuleFor(s => s.Enabled, f => f.Random.Bool())
                 .RuleFor(s => s.Description, _ => $"Serviço #{serviceId}")
@@ -135,7 +136,7 @@ namespace BRCurtidas.Web.Api.Tests
 
         private static IMapper GenerateMapper()
         {
-            AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<Service, GetServicesResponseModel>());
+            AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<Service, ServiceResponseModel>());
 
             return AutoMapper.Mapper.Instance;
         }

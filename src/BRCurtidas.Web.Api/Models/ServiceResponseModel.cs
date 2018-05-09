@@ -2,11 +2,11 @@
 
 namespace BRCurtidas.Web.Api.Models
 {
-    public class GetServicesResponseModel
+    public class ServiceResponseModel
     {
         public long Id { get; set; }
 
-        public ServiceCategory Category { get; set; }
+        public ServiceScope Category { get; set; }
 
         public string Description { get; set; }
 

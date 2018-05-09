@@ -15,21 +15,21 @@ namespace BRCurtidas.Web.Api.Tests.Controllers
         {
             var controller = new ServicesController(Mocks.DataContext, Mocks.Mapper);
 
-            var result = controller.Get(new GetServicesRequestModel());
+            var result = controller.Get(new ServicesRequestModel());
 
             result.Should().BeOfType<OkObjectResult>();
 
             var okResult = result as OkObjectResult;
 
-            okResult.Value.Should().BeAssignableTo<IEnumerable<GetServicesResponseModel>>();
+            okResult.Value.Should().BeAssignableTo<IEnumerable<ServiceResponseModel>>();
 
             var expected =
                 Mocks.DataContext.Services
                 .OrderByDescending(s => s.Orders.Count())
                 .Take(10)
-                .Select(s => Mocks.Mapper.Map<GetServicesResponseModel>(s));
+                .Select(s => Mocks.Mapper.Map<ServiceResponseModel>(s));
 
-            var actual = okResult.Value as IEnumerable<GetServicesResponseModel>;
+            var actual = okResult.Value as IEnumerable<ServiceResponseModel>;
 
             actual.Should().BeEquivalentTo(expected);
         }

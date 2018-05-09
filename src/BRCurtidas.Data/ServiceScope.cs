@@ -1,6 +1,6 @@
 ﻿namespace BRCurtidas.Data
 {
-    public enum ServiceCategory
+    public enum ServiceScope
     {
         National = 1,
         International = 2

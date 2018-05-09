@@ -15,6 +15,9 @@ namespace BRCurtidas.Data
 
         public PaymentMethod PaymentMethod { get; set; }
 
+        [ForeignKey("Order")]
+        public long OrderId { get; set; }
+
         public virtual Order Order { get; set; }
     }
 }

@@ -15,8 +15,8 @@ namespace BRCurtidas.Data
             {
                 new Service
                 {
-                    Category = ServiceCategory.International,
-                    Description = "500 Seguidores Americanos",
+                    Scope = ServiceScope.International,
+                    Description = "500 Seguidores",
                     SocialNetwork = SocialNetwork.Instagram,
                     PaymentType = PaymentType.Single,
                     Type = ServiceType.Followers,
@@ -24,8 +24,8 @@ namespace BRCurtidas.Data
                 },
                 new Service
                 {
-                    Category = ServiceCategory.International,
-                    Description = "1.000 Seguidores Americanos",
+                    Scope = ServiceScope.International,
+                    Description = "1.000 Seguidores",
                     SocialNetwork = SocialNetwork.Instagram,
                     PaymentType = PaymentType.Single,
                     Type = ServiceType.Followers,
@@ -33,8 +33,8 @@ namespace BRCurtidas.Data
                 },
                 new Service
                 {
-                    Category = ServiceCategory.International,
-                    Description = "2.500 Seguidores Americanos",
+                    Scope = ServiceScope.International,
+                    Description = "2.500 Seguidores",
                     SocialNetwork = SocialNetwork.Instagram,
                     PaymentType = PaymentType.Single,
                     Type = ServiceType.Followers,
