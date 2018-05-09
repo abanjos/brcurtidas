@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BRCurtidas.PagSeguro", "BRC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BRCurtidas.PagSeguro.Tests", "BRCurtidas.PagSeguro.Tests\BRCurtidas.PagSeguro.Tests.csproj", "{FAB13272-D572-436A-92F2-970FC4D92053}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BRCurtidas.Web.UI", "BRCurtidas.Web.UI\BRCurtidas.Web.UI.csproj", "{AA693D0C-AC6C-49B4-9B15-58D74920384C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{FAB13272-D572-436A-92F2-970FC4D92053}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAB13272-D572-436A-92F2-970FC4D92053}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAB13272-D572-436A-92F2-970FC4D92053}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA693D0C-AC6C-49B4-9B15-58D74920384C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA693D0C-AC6C-49B4-9B15-58D74920384C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA693D0C-AC6C-49B4-9B15-58D74920384C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA693D0C-AC6C-49B4-9B15-58D74920384C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
