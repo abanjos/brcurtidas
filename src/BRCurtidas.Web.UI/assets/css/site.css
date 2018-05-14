@@ -14,7 +14,6 @@
 }
 
 footer {
-    padding: 10px 0 50px 0;
     background: #415e41;
     color: #ffffff;
     text-align: center;
@@ -40,8 +39,6 @@ footer a:first-child{
     flex-direction: column;
     margin-bottom: 70px;
     background: #f9f9f9;
-    padding-left: 25px;
-    padding-right: 25px;
     padding-top: 10px;
     display: -webkit-box;
     display: -webkit-flex;
@@ -49,18 +46,17 @@ footer a:first-child{
     display: flex;
 }
 
-.banner-item img {
-    width: 100%;
+.banner-image {
+    flex-basis: 70%;
 }
 
+
 .banner-description {
-    padding: 0 10px;
     align-self: center;
 }
 
 .banner-description-text {
     text-align: justify;
-    padding: 20px;
 }
 
 .banner-action-button.btn-instagram-seguidores {
@@ -116,7 +112,6 @@ footer a:first-child{
 
 .about-box-item {
     padding-bottom: 20px;
-    padding-right: 10px;
 }
 
 .about-service-box {
@@ -139,7 +134,6 @@ footer a:first-child{
 @media(min-width: 768px) {
     .banner-item {
         flex-direction: row;
-        height: 245px;
         margin-bottom: 50px;
     }
 
