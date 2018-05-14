@@ -1,0 +1,155 @@
+﻿body {
+    background: #f9f9f9;
+    display: grid;
+    height: 100vh;
+    grid-template-rows: auto 1fr auto;
+}
+
+.navbar {
+    margin-bottom: 20px;
+    color: #8b8b8b;
+    font-family: Candara;
+    font-weight: bold;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
+}
+
+footer {
+    padding: 10px 0 50px 0;
+    background: #415e41;
+    color: #ffffff;
+    text-align: center;
+    padding-top: 100px;
+}
+
+footer a:first-child{
+    display: inline-block;
+    margin-bottom: 10px;
+}
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+
+.banner-box {
+    background: #f9f9f9;
+    margin-bottom: 50px;
+    padding-bottom: 5px;
+    margin-top: 50px;
+}
+
+.banner-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 70px;
+    background: #f9f9f9;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.banner-item img {
+    width: 100%;
+}
+
+.banner-description {
+    padding: 0 10px;
+    align-self: center;
+}
+
+.banner-description-text {
+    text-align: justify;
+    padding: 20px;
+}
+
+.banner-action-button.btn-instagram-seguidores {
+    color: #fff;
+    background-color: #f47442;
+    border-color: #ff6428;
+}
+
+.banner-action-button.btn-instagram-curtidas {
+    color: #fff;
+    background-color: #c45ac5;
+    border-color: #9008a5;
+}
+
+.banner-action-button.btn-facebook {
+    color: #fff;
+    background-color: #3c5a99;
+    border-color: #0024c9;
+}
+
+.information-box {
+    text-align: center;
+    padding-top: 100px;
+}
+
+.tips-text {
+    padding-bottom: 20px;
+}
+
+    .tips-text h2 {
+    color: #3b6b3b;
+    }
+
+    .tips-text h4 {
+    color: #565656;
+    }
+
+.tips-box {
+    padding-bottom: 200px;
+}
+
+.about-box {
+    text-align: left;
+    background: #ff8a00;
+    padding-top: 80px;
+    padding-bottom: 30px;
+    color: white;
+}
+    .about-box h5 {
+        color: white;
+    }
+
+
+.about-box-item {
+    padding-bottom: 20px;
+    padding-right: 10px;
+}
+
+.about-service-box {
+    color: white;
+    background: #b30c26;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    margin-bottom: 30px;
+}
+    .about-service-box p {
+    font-size: 18px;
+    font-family: Corbel;
+    }
+    .about-service-box h3, h5 {
+        color: #ffc000;
+        padding-bottom: 10px;
+    }
+
+
+@media(min-width: 768px) {
+    .banner-item {
+        flex-direction: row;
+        height: 245px;
+        margin-bottom: 50px;
+    }
+
+    .banner-box {
+        padding-top: 35px;
+        padding-bottom: 50px;
+        margin-bottom: 50px;
+    }
+
+    .banner-box > .banner-item:nth-child(2) {
+        flex-direction: row-reverse;
+    }
+}
