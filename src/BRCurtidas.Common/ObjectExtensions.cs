@@ -1,12 +1,14 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace BRCurtidas.Common
 {
     public static class ObjectExtensions
     {
-        public static string SerializeToXml<T>(this T obj, Encoding encoding)
+        public static string SerializeToXml<T>(this T obj, Encoding encoding, XmlSerializationType serializationType = XmlSerializationType.PascalCase)
         {
             var type = typeof(T);
 
@@ -17,8 +19,21 @@ namespace BRCurtidas.Common
 
             using (var stream = new MemoryStream())
             {
-                using (var writer = new CamelCaseXmlWriter(stream, encoding))
-                    serializer.Serialize(writer, obj, namespaces);
+                switch (serializationType)
+                {
+                    case XmlSerializationType.CamelCase:
+                        using (var writer = new CamelCaseXmlWriter(stream, encoding))
+                            serializer.Serialize(writer, obj, namespaces);
+                        break;
+
+                    case XmlSerializationType.PascalCase:
+                        using (var writer = XmlWriter.Create(stream, new XmlWriterSettings { Encoding = encoding }))
+                            serializer.Serialize(writer, obj, namespaces);
+                        break;
+
+                    default:
+                        throw new ArgumentException("Invalid XmlSerializationType.");
+                }
 
                 return encoding.GetString(stream.ToArray());
             }

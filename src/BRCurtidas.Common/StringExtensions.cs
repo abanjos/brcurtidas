@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.IO;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace BRCurtidas.Common
@@ -24,13 +26,31 @@ namespace BRCurtidas.Common
             return Uri.TryCreate(url, UriKind.Absolute, out Uri _uri);
         }
 
-        public static T XmlDeserialize<T>(this string xml)
+        public static T XmlDeserialize<T>(this string xml, XmlSerializationType serializationType = XmlSerializationType.PascalCase)
         {
             var serializer = new XmlSerializer(typeof(T));
 
             using (var stringReader = new StringReader(xml))
-                using (var xmlReader = new CamelCaseXmlReader(stringReader))
-                    return (T)serializer.Deserialize(xmlReader);
+            {
+                switch (serializationType)
+                {
+                    case XmlSerializationType.CamelCase:
+                        using (var xmlReader = new CamelCaseXmlReader(stringReader))
+                            return (T)serializer.Deserialize(xmlReader);
+
+                    case XmlSerializationType.PascalCase:
+                        using (var xmlReader = XmlReader.Create(stringReader))
+                            return (T)serializer.Deserialize(xmlReader);
+
+                    default:
+                        throw new ArgumentException("Invalid XmlSerializationType.");
+                }
+            }
+        }
+
+        public static T JsonDeserialize<T>(this string json)
+        {
+            return JsonConvert.DeserializeObject<T>(json);
         }
 
         public static string StartAsLowerCase(this string name)

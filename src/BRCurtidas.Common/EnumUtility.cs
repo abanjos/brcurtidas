@@ -4,20 +4,6 @@ using System.Linq;
 
 namespace BRCurtidas.Common
 {
-    [AttributeUsage(AttributeTargets.Enum)]
-    public sealed class EnumDescriptionAttribute : Attribute
-    {
-        public EnumDescriptionAttribute(string name, string culture)
-        {
-            Name = name ?? throw new ArgumentNullException(nameof(name));
-            Culture = culture ?? throw new ArgumentNullException(nameof(culture));
-        }
-
-        public string Name { get; set; }
-
-        public string Culture { get; set; }
-    }
-
     public static class EnumUtility
     {
         public static IEnumerable<T> GetValues<T>()
@@ -25,9 +11,41 @@ namespace BRCurtidas.Common
             return Enum.GetValues(typeof(T)).Cast<T>();
         }
 
-        public static IEnumerable<string> GetDescriptions<T>()
+        public static IEnumerable<string> AsStrings<T>()
         {
             return GetValues<T>().Select(v => v.ToString());
+        }
+
+        public static IEnumerable<string> GetNames<T>()
+        {
+            var type = typeof(T);
+
+            foreach (var name in AsStrings<T>())
+            {
+                var field = type.GetField(name);
+                var attributeType = typeof(DisplayOptionsAttribute);
+
+                if (field.GetCustomAttributes(attributeType, false).FirstOrDefault() is DisplayOptionsAttribute attribute)
+                    yield return attribute.Name;
+                else
+                    yield return name;
+            }
+        }
+
+        public static IEnumerable<string> GetPluralizedNames<T>()
+        {
+            var type = typeof(T);
+
+            foreach (var name in AsStrings<T>())
+            {
+                var field = type.GetField(name);
+                var attributeType = typeof(DisplayOptionsAttribute);
+
+                if (field.GetCustomAttributes(attributeType, false).FirstOrDefault() is DisplayOptionsAttribute attribute)
+                    yield return attribute.PluralizedName;
+                else
+                    yield return name;
+            }
         }
     }
 }

@@ -25,14 +25,13 @@ namespace BRCurtidas.PagSeguro
 
         public async Task<CheckoutResponse> CreateCheckoutAsync(CheckoutRequest request)
         {
-            var requestXml = request.SerializeToXml(Encodings.Latin1);
+            var requestXml = request.SerializeToXml(Encodings.Latin1, XmlSerializationType.CamelCase);
             var requestUrl = $"{_url}/checkout?email={HttpUtility.UrlEncode(_credentials.Email)}&token={_credentials.Token}";
 
             using (var client = new HttpClient())
             {
                 var requestContent = new StringContent(requestXml, Encodings.Latin1, MediaTypes.Xml);
                 var result = await client.PostAsync(requestUrl, requestContent);
-
                 var response = await result.Content.ReadAsStringAsync();
 
                 if (!result.IsSuccessStatusCode)
@@ -40,7 +39,7 @@ namespace BRCurtidas.PagSeguro
                     throw new Exception($"Unsuccessful status code returned from PagSeguro API. {result.StatusCode}: {response}");
                 }
 
-                return response.XmlDeserialize<CheckoutResponse>();
+                return response.XmlDeserialize<CheckoutResponse>(XmlSerializationType.CamelCase);
             }
         }
     }

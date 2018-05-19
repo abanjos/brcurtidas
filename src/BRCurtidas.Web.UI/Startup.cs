@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using BRCurtidas.Web.UI.Services.ApiClient;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,12 @@ namespace BRCurtidas.Web.UI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IApiClientService>(_ =>
+            {
+                var url = Configuration["ApiService:Url"];
+                return new ApiClientService(url);
+            });
+
             services.AddMvc();
         }
 
