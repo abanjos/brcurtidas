@@ -1,6 +1,6 @@
-﻿namespace BRCurtidas.Web.Api.Models
+﻿namespace BRCurtidas.Web.UI.Services.ApiClient
 {
-    public class ServiceTypeResponseModel
+    public class ServiceType
     {
         public int ServiceTypeId { get; set; }
 

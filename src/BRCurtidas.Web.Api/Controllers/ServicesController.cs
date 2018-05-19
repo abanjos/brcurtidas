@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using BRCurtidas.Common;
 using BRCurtidas.Data;
 using BRCurtidas.Web.Api.Models;
 using Microsoft.AspNetCore.Mvc;
+using BRCurtidas.Common;
 
 namespace BRCurtidas.Web.Api.Controllers
 {
@@ -43,25 +42,17 @@ namespace BRCurtidas.Web.Api.Controllers
         [HttpGet("types")]
         public IActionResult GetTypes(ServiceTypesRequestModel request)
         {
-            IEnumerable<ServiceType> types;
-
-            if (request.SocialNetwork.HasValue)
-            {
-                types = _context.Services
+            var types = _context.Services
                     .Where(s => s.SocialNetwork == request.SocialNetwork)
-                    .GroupBy(s => s.Type)
+                    .GroupBy(s => new Tuple<ServiceType, ServiceScope>(s.Type, s.Scope))
                     .Where(g => g.Count() > 0)
                     .Select(g => g.Key);
-            }
-            else
-            {
-                types = EnumUtility.GetValues<ServiceType>();
-            }
 
             var result = types.Select(type => new ServiceTypeResponseModel
             {
-                Id = (int)type,
-                Name = type.ToString()
+                ServiceTypeId = (int)type.Item1,
+                ServiceScopeId = (int)type.Item2,
+                Name = type.Item1.GetName() + " " + type.Item2.GetPluralizedName()
             });
 
             return Ok(result);
