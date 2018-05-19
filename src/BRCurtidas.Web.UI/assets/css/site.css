@@ -6,7 +6,6 @@
 }
 
 .navbar {
-    margin-bottom: 20px;
     color: #8b8b8b;
     font-family: Candara;
     font-weight: bold;
@@ -27,55 +26,50 @@ footer a:first-child{
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 
-.banner-box {
-    background: #f9f9f9;
-    margin-bottom: 50px;
-    padding-bottom: 5px;
-    margin-top: 50px;
+.banner {
+    background: #cc0033;
+}
+    .banner .row {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    }
+    
+    .banner h3, h2 {
+        color: #ffcb00;
+        padding-bottom: 30px;
+    }
+    .banner p {
+        color: white;
+        padding-bottom: 20px;
+    }
+
+.banner-icons {
+    padding-bottom: 30px;
+}
+    .banner-icons img {
+        padding: 30px;
+    }
+
+.products-banner {
+    padding-top: 50px;
+    padding-bottom: 100px;
+    text-align: center;
+}
+.products-banner .col-sm-4 {
+    padding-bottom: 50px;
 }
 
-.banner-item {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 70px;
-    background: #f9f9f9;
-    padding-top: 10px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
+    .products-banner .col-sm-4 h6 {
+    color: #8b8b8b;
 }
 
-.banner-image {
-    flex-basis: 70%;
+    .products-banner .col-sm-4 h4 {
+    padding: 5px 0px 5px 0px;
+    color: black;
 }
 
 
-.banner-description {
-    align-self: center;
-}
 
-.banner-description-text {
-    text-align: justify;
-}
-
-.banner-action-button.btn-instagram-seguidores {
-    color: #fff;
-    background-color: #f47442;
-    border-color: #ff6428;
-}
-
-.banner-action-button.btn-instagram-curtidas {
-    color: #fff;
-    background-color: #c45ac5;
-    border-color: #9008a5;
-}
-
-.banner-action-button.btn-facebook {
-    color: #fff;
-    background-color: #3c5a99;
-    border-color: #0024c9;
-}
 
 .information-box {
     text-align: center;
