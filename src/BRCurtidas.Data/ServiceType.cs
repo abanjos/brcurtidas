@@ -1,8 +1,8 @@
-﻿using BRCurtidas.Common;
+﻿using System.ComponentModel.DataAnnotations;
+using BRCurtidas.Common;
 
-namespace BRCurtidas.Data
-{
-    public enum ServiceType
+
+    /*public enum ServiceType
     {
         [DisplayOptions("Curtidas")]
         Likes = 1,
@@ -12,5 +12,17 @@ namespace BRCurtidas.Data
         Followers = 3,
         [DisplayOptions("Inscrições")]
         Subscriptions = 4
+    }*/
+
+
+namespace BRCurtidas.Data
+{
+    public class ServiceType
+    {
+        [Key]
+        public int Id { get; set; }
+
+        public string Name {get; set;}
     }
 }
+

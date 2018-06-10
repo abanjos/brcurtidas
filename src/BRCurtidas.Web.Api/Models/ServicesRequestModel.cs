@@ -4,8 +4,8 @@ namespace BRCurtidas.Web.Api.Models
 {
     public class ServicesRequestModel : PaginationModel
     {
-        public SocialNetwork? SocialNetwork { get; set; }
+        public int? SocialNetwork { get; set; }
 
-        public ServiceScope? Scope { get; set; }
+        public int? Scope { get; set; }
     }
 }

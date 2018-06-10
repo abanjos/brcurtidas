@@ -65,5 +65,49 @@ namespace BRCurtidas.Web.UI.Services.ApiClient
                 return socialNetworks;
             }
         }
+
+        public async Task<ScopedServiceType> GetServiceWithProductsAsync(string slug)
+        {
+            var requestUrl = $"{_url}/api/scopedservicetypes?slug={slug}";
+
+             using (var client = new HttpClient())
+             {
+                 var result = await client.GetAsync(requestUrl);
+                 var response = await result.Content.ReadAsStringAsync();
+
+                  if (!result.IsSuccessStatusCode)
+                {
+                    throw new Exception($"Unsuccessful status code returned from BRCurtidas API. {result.StatusCode}: {response}");
+                }
+
+                var scopedServiceType = response.JsonDeserialize<ScopedServiceType>();
+                var result2 = await GetProductsAsync(scopedServiceType.Id);
+                scopedServiceType.Products = result2.ToArray();
+
+                return scopedServiceType;
+
+             }
+        }
+
+        public async Task<IEnumerable<Product>> GetProductsAsync(int id)
+        {
+            var requestUrl = $"{_url}/api/products?scopedservicetypeid={id}";
+
+             using (var client = new HttpClient())
+             {
+                 var result = await client.GetAsync(requestUrl);
+                 var response = await result.Content.ReadAsStringAsync();
+
+                  if (!result.IsSuccessStatusCode)
+                {
+                    throw new Exception($"Unsuccessful status code returned from BRCurtidas API. {result.StatusCode}: {response}");
+                }
+                var products = response.JsonDeserialize<IEnumerable<Product>>();
+
+                return products;
+             }
+        }
     }
 }
+
+

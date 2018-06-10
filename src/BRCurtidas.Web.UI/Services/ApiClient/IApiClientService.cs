@@ -7,5 +7,6 @@ namespace BRCurtidas.Web.UI.Services.ApiClient
     public interface IApiClientService
     {
         Task<IEnumerable<SocialNetwork>> GetSocialNetworksAsync();
+        Task<ScopedServiceType> GetServiceWithProductsAsync(string slug);
     }
 }

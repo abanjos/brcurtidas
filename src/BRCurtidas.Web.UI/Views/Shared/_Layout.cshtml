@@ -31,7 +31,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 @foreach (var serviceType in socialNetwork.ServiceTypes)
                                 {
-                                    <a class="dropdown-item" href="#">@serviceType.Name</a>
+                                    <a class="dropdown-item" href="@Url.RouteUrl(RouteNames.GetProducts, new {slug = @serviceType.Slug})">@serviceType.Name</a>
                                 }
                             </div>
                         </li>

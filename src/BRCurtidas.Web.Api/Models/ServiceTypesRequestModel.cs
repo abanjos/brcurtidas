@@ -4,6 +4,6 @@ namespace BRCurtidas.Web.Api.Models
 {
     public class ServiceTypesRequestModel
     {
-        public SocialNetwork SocialNetwork { get; set; }
+        public int SocialNetwork { get; set; }
     }
 }
