@@ -77,7 +77,7 @@ namespace BRCurtidas.Web.Api.Tests
             return userGenerator.Generate();
         }
 
-        private static IEnumerable<Order> GenerateRandomOrders(Service service, int quantity)
+        private static IEnumerable<Order> GenerateRandomOrders(Product product, int quantity)
         {
             var orderId = 0;
 
@@ -87,9 +87,9 @@ namespace BRCurtidas.Web.Api.Tests
                 .RuleFor(o => o.Id, _ => orderId++)
                 .RuleFor(o => o.Created, _ => DateTime.Now)
                 .RuleFor(o => o.Payment, (_, o) => GenerateRandomPayment(o))
-                .RuleFor(o => o.Price, (_, o) => service.Price * o.Quantity)
+                .RuleFor(o => o.Price, (_, o) => product.Price * o.Quantity)
                 .RuleFor(o => o.Quantity, f => f.Random.Int(1))
-                .RuleFor(o => o.Service, _ => service)
+                .RuleFor(o => o.Product, _ => product)
                 .RuleFor(o => o.SocialNetworkProfile, f => f.Internet.Avatar())
                 .RuleFor(o => o.User, _ => GenerateRandomUser());
 
@@ -97,46 +97,79 @@ namespace BRCurtidas.Web.Api.Tests
                 yield return orderGenerator.Generate();
         }
 
-        private static IEnumerable<Service> GenerateRandomServices(int quantity)
+        private static IEnumerable<Product> GenerateRandomProducts(int quantity)
         {
-            var serviceId = 0;
+            var productId = 0;
 
             var serviceGenerator =
-                new Faker<Service>()
+                new Faker<Product>()
                 .StrictMode(true)
-                .RuleFor(s => s.Id, _ => serviceId++)
+                .RuleFor(s => s.Id, _ => productId++)
                 .RuleFor(s => s.Orders, (f, s) => GenerateRandomOrders(s, f.Random.Int(1, 5)).ToList())
-                .RuleFor(s => s.PaymentType, f => f.PickRandom<PaymentType>())
-                .RuleFor(s => s.Scope, f => f.PickRandom<ServiceScope>())
                 .RuleFor(s => s.Price, f => f.Random.Decimal(0, 50))
                 .RuleFor(s => s.Enabled, f => f.Random.Bool())
-                .RuleFor(s => s.Description, _ => $"Serviço #{serviceId}")
-                .RuleFor(s => s.SocialNetwork, f => f.PickRandom<SocialNetwork>())
-                .RuleFor(s => s.Type, f => f.PickRandom<ServiceType>());
+                .RuleFor(s => s.Description, _ => $"Produto #{productId}")
+                .RuleFor(s => s.ScopedServiceType, _ => GenerateRandomScopedServiceType())
+                .RuleFor(s => s.Title, _ => $"Produto #{productId}");
 
             for (int i = 0; i < quantity; i++)
                 yield return serviceGenerator.Generate();
         }
 
+        private static ScopedServiceType GenerateRandomScopedServiceType()
+        {
+            var scopedServiceTypeId = 0;
+
+            var scopedServiceTypeGenerator =
+                new Faker<ScopedServiceType>()
+                .StrictMode(true)
+                .RuleFor(s => s.Id, _ => scopedServiceTypeId++)
+                .RuleFor(s => s.ServiceScope, f =>
+                {
+                    var id = f.Random.Int();
+                    return new ServiceScope { Id = id, Name = $"Escopo de serviço #{id}" };
+                })
+                .RuleFor(s => s.ServiceType, f =>
+                {
+                    var id = f.Random.Int();
+                    return new ServiceType { Id = id, Name = $"Tipo de serviço #{id}" };
+                })
+                .RuleFor(s => s.SocialNetwork, f =>
+                {
+                    var id = f.Random.Int();
+                    return new SocialNetwork { Id = id, Name = $"Rede social #{id}" };
+                })
+                .RuleFor(s => s.Title, _ => $"Tipo de serviço #{scopedServiceTypeId}")
+                .RuleFor(s => s.Description, _ => $"Tipo de serviço #{scopedServiceTypeId}")
+                .RuleFor(s => s.PaymentType, f =>
+                    {
+                        var id = f.Random.Int();
+                        return new PaymentType { Id = id, Name = $"Meio de pagamento #{id}" };
+                    })
+                .RuleFor(s => s.Slug, _ => $"/service{scopedServiceTypeId}");
+
+            return scopedServiceTypeGenerator.Generate();
+        }
+
         private static DataContext GenerateFakeDataContext()
         {
             var context = Substitute.For<DataContext>();
-            var services = Substitute.For<DbSet<Service>, IQueryable<Service>>() as IQueryable<Service>;
-            var data = GenerateRandomServices(20).ToList().AsQueryable();
+            var products = Substitute.For<DbSet<Product>, IQueryable<Product>>() as IQueryable<Product>;
+            var data = GenerateRandomProducts(20).ToList().AsQueryable();
 
-            services.Provider.Returns(data.Provider);
-            services.Expression.Returns(data.Expression);
-            services.ElementType.Returns(data.ElementType);
-            services.GetEnumerator().Returns(data.GetEnumerator());
+            products.Provider.Returns(data.Provider);
+            products.Expression.Returns(data.Expression);
+            products.ElementType.Returns(data.ElementType);
+            products.GetEnumerator().Returns(data.GetEnumerator());
 
-            context.Services.Returns(services);
+            context.Products.Returns(products);
 
             return context;
         }
 
         private static IMapper GenerateMapper()
         {
-            AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<Service, ServiceResponseModel>());
+            AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<Product, ServiceResponseModel>());
 
             return AutoMapper.Mapper.Instance;
         }

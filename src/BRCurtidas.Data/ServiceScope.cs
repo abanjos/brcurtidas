@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using BRCurtidas.Common;
 
 namespace BRCurtidas.Data
 {
@@ -8,6 +7,6 @@ namespace BRCurtidas.Data
         [Key]
         public int Id { get; set; }
 
-        public string Name {get; set;}
+        public string Name { get; set; }
     }
 }

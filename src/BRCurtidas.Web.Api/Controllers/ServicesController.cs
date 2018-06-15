@@ -4,7 +4,6 @@ using AutoMapper;
 using BRCurtidas.Data;
 using BRCurtidas.Web.Api.Models;
 using Microsoft.AspNetCore.Mvc;
-using BRCurtidas.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace BRCurtidas.Web.Api.Controllers
@@ -47,7 +46,8 @@ namespace BRCurtidas.Web.Api.Controllers
         {
             var types = _context.ScopedServiceTypes
                 .Where(s => s.SocialNetwork.Id == request.SocialNetwork)
-                .Select(s => new ServiceTypeResponseModel {
+                .Select(s => new ServiceTypeResponseModel
+                {
                     Name = s.Title,
                     Slug = s.Slug
                 });

@@ -14,7 +14,7 @@ namespace BRCurtidas.Data
 
         public string SocialNetworkProfile { get; set; }
 
-        public virtual Product Service { get; set; }
+        public virtual Product Product { get; set; }
 
         public virtual Payment Payment { get; set; }
 
