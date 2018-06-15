@@ -24,7 +24,7 @@ namespace BRCurtidas.Web.Api.Tests.Controllers
             okResult.Value.Should().BeAssignableTo<IEnumerable<ServiceResponseModel>>();
 
             var expected =
-                Mocks.DataContext.Services
+                Mocks.DataContext.Products
                 .OrderByDescending(s => s.Orders.Count())
                 .Take(10)
                 .Select(s => Mocks.Mapper.Map<ServiceResponseModel>(s));

@@ -5,6 +5,7 @@ using BRCurtidas.Web.UI.Services.ApiClient;
 using System.Threading.Tasks;
 using System.Linq;
 using System;
+using BRCurtidas.Web.UI.Routes;
 
 namespace BRCurtidas.Web.UI.Controllers
 {
@@ -21,6 +22,19 @@ namespace BRCurtidas.Web.UI.Controllers
         {
             var socialNetworks = await _apiClientService.GetSocialNetworksAsync();
             var model = new HomeViewModel { SocialNetworks = socialNetworks.ToArray() };
+
+            return View(model);
+        }
+
+        [HttpGet("/comprar/{slug}", Name = RouteNames.GetProducts)]
+        public async Task<IActionResult> GetProducts(string slug)
+        {
+            var socialNetworks = await _apiClientService.GetSocialNetworksAsync();
+            var scopedServiceType = await _apiClientService.GetServiceWithProductsAsync(slug);
+            var model = new GetProductsViewModel{ 
+                ScopedServiceType = scopedServiceType,
+                SocialNetworks = socialNetworks.ToArray()
+                };
 
             return View(model);
         }

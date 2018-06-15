@@ -1,12 +1,13 @@
-﻿using BRCurtidas.Common;
+﻿using System.ComponentModel.DataAnnotations;
+using BRCurtidas.Common;
 
 namespace BRCurtidas.Data
 {
-    public enum ServiceScope
+    public class ServiceScope
     {
-        [DisplayOptions("Brasileiro", "Brasileiros")]
-        National = 1,
-        [DisplayOptions("Internacional", "Internacionais")]
-        International = 2
+        [Key]
+        public int Id { get; set; }
+
+        public string Name {get; set;}
     }
 }

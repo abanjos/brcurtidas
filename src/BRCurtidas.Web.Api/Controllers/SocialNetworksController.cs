@@ -1,4 +1,5 @@
-﻿using BRCurtidas.Common;
+﻿using AutoMapper;
+using BRCurtidas.Common;
 using BRCurtidas.Data;
 using BRCurtidas.Web.Api.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -9,18 +10,20 @@ namespace BRCurtidas.Web.Api.Controllers
     [Route("api/[controller]")]
     public class SocialNetworksController : Controller
     {
+        private readonly DataContext _dataContext;
+
+        private readonly IMapper _mapper;
+        public SocialNetworksController(DataContext dataContext, IMapper mapper) {
+            _dataContext = dataContext;
+            _mapper = mapper;
+        }
+
         [HttpGet]
         public IActionResult Get()
         {
-            var socialNetworks = EnumUtility.GetValues<SocialNetwork>();
+            var socialNetworks = _dataContext.SocialNetworks.Select(s => _mapper.Map<SocialNetworkResponseModel>(s));
 
-            var response = socialNetworks.Select(socialNetwork => new SocialNetworkResponseModel
-            {
-                Id = (int)socialNetwork,
-                Name = socialNetwork.ToString()
-            });
-
-            return Ok(response);
+            return Ok(socialNetworks);
         }
     }
 }
