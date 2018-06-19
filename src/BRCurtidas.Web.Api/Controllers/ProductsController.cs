@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using AutoMapper;
 using BRCurtidas.Data;
+using BRCurtidas.Web.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BRCurtidas.Web.Api.Controllers
@@ -27,7 +28,8 @@ namespace BRCurtidas.Web.Api.Controllers
             .Select(p => new GetProductsByScopedServiceTypeIdResponseModel {
                 Id = p.Id,
                 Title = p.Title,
-                Description = p.Description
+                Description = p.Description,
+                Price = p.Price
             });
 
             return Ok(products);

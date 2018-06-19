@@ -20,6 +20,7 @@ namespace BRCurtidas.Web.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
+            throw new Exception();
             var socialNetworks = await _apiClientService.GetSocialNetworksAsync();
             var model = new HomeViewModel { SocialNetworks = socialNetworks.ToArray() };
 
@@ -38,7 +39,7 @@ namespace BRCurtidas.Web.UI.Controllers
 
             return View(model);
         }
-
+        
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

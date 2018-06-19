@@ -27,7 +27,10 @@ namespace BRCurtidas.Web.Api.Controllers
                     Id = s.Id,
                     Title = s.Title,
                     Slug = s.Slug,
-                    Description = s.Description
+                    Description = s.Description,
+                    Image = s.Image,
+                    PaymentType = s.PaymentType.Id
+
                 }).Single();
 
             return Ok(scopedServiceType);

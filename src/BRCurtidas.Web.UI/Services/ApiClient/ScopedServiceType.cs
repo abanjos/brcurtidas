@@ -12,6 +12,10 @@ namespace BRCurtidas.Web.UI.Services.ApiClient
         public string Title { get; set; }
 
         public string Slug {get; set;}
+
+        public string Image { get; set; }
+
+        public int PaymentType { get; set; }
     }
 
 

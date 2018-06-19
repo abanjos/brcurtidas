@@ -17,5 +17,7 @@ namespace BRCurtidas.Data
         public PaymentType PaymentType { get; set; }
 
         public string Slug { get; set; }
+
+        public string Image { get; set; }
     }
 }

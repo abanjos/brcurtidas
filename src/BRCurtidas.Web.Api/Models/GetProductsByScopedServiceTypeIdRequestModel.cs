@@ -1,4 +1,4 @@
-namespace BRCurtidas.Web.Api.Controllers
+namespace BRCurtidas.Web.Api.Models
 {
     public class GetProductsByScopedServiceTypeIdRequestModel
     {
