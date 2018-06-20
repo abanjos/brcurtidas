@@ -1,8 +1,9 @@
 ﻿namespace BRCurtidas.Data
 {
-    public enum PaymentType
+    public class PaymentType
     {
-        Single = 1,
-        Recurrent = 2
+        public int Id { get; set; }
+
+        public string Name { get; set; }
     }
 }

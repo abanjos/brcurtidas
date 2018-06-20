@@ -21,8 +21,19 @@ namespace BRCurtidas.Data
 
         public virtual DbSet<Payment> Payments { get; set; }
 
-        public virtual DbSet<Service> Services { get; set; }
-
         public virtual DbSet<User> Users { get; set; }
+
+        public virtual DbSet<PaymentType> PaymentTypes { get; set;}
+
+        public virtual DbSet<SocialNetwork> SocialNetworks { get; set; }
+
+        public virtual DbSet<ServiceType> ServiceTypes { get; set; }
+
+        public virtual DbSet<Product> Products { get; set; }
+
+        public virtual DbSet<ServiceScope> ServiceScopes { get; set; }
+
+        public virtual DbSet<ScopedServiceType> ScopedServiceTypes { get; set; }
+
     }
 }

@@ -28,13 +28,14 @@ namespace BRCurtidas.Web.UI
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (!env.IsDevelopment())
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
             }
             else
             {
+                app.UseStatusCodePagesWithReExecute("/Home/{0}");
                 app.UseExceptionHandler("/Home/Error");
             }
 

@@ -1,10 +1,9 @@
 ﻿namespace BRCurtidas.Data
 {
-    public enum SocialNetwork
+    public class SocialNetwork
     {
-        Instagram = 1,
-        Facebook = 2,
-        YouTube = 3,
-        Twitter = 4
+        public int Id { get; set; }
+
+        public string Name { get; set; }
     }
 }

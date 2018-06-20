@@ -1,0 +1,39 @@
+@model BRCurtidas.Web.UI.Models.GetProductsViewModel
+@using System.Text.Encodings.Web;
+
+<div class="container">
+    <section class="service">
+        <div class="row">
+            <div class="col-md-4">
+                <img class="service-icon" src="@Model.ScopedServiceType.Image">
+            </div>
+            <div class="col-md-8">
+                <h1 class="service-title">@Model.ScopedServiceType.Title</h1>
+                <p>@Model.ScopedServiceType.Description</p>
+            </div>
+        </div>
+    </section>
+    <section class="service-products">
+        @foreach(var p in Model.ScopedServiceType.Products) {
+            <div class="service-product">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h2 class="service-product-title">
+                           @Html.Raw(p.Title)
+                        </h2>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Raw(p.Description)
+                    </div>
+                    <div class="col-md-3">
+                        <p class="service-product-price">R$ @p.Price</p>                   
+                    </div>
+                    <div class="col-md-3">
+                        <a data-toggle="modal" data-price="@p.Price" data-producttitle="@System.Net.WebUtility.HtmlDecode(p.Title)" data-target="#exampleModal" href="#" class="service-product-button">COMPRAR</a>
+                    </div>
+                </div>  
+            </div>  
+        } 
+    </section>
+</div>
+@Html.Partial("Modal", Model)

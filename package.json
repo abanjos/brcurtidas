@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "scripts": {
+    "run-all": "dotnet build src/ && dotnet run --project src/BRCurtidas.Web.Api --no-build && dotnet run --project src/BRCurtidas.Web.UI --no-build"
+  }
+}

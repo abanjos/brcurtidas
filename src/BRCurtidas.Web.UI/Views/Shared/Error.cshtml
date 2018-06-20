@@ -2,21 +2,29 @@
 @{
     ViewData["Title"] = "Error";
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+        <link rel="stylesheet" href="~/css/site.min.css" />
+</head>
+<body>
+    <img class="brcurtidas-logo-error" src="/images/bricon.png" alt="Ícone BR Curtidas">
+    <div class="container">
+        <div class="error-dev">Atenção! A página que você está tentando acessar não existe.
+            <a href="~/">Clique aqui para ir a uma página válida</a>
+        </div>
+    </div>
 
-@if (Model.ShowRequestId)
-{
-    <p>
-        <strong>Request ID:</strong> <code>@Model.RequestId</code>
-    </p>
-}
+    <footer>
+            <a href="#"><img src="~/images/uparrow_icon.png"></a>
+            <div>© 2016 - 2017 BR Curtidas - Todos os direitos reservados</div>
+            <div>Whatsapp: (21) 96544-8522 | Skype: andrebrananjos | E-mail: brcurtidas@brcurtidas.com.br</div>
+    </footer>
 
-<h3>Development Mode</h3>
-<p>
-    Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
-</p>
-<p>
-    <strong>Development environment should not be enabled in deployed applications</strong>, as it can result in sensitive information from exceptions being displayed to end users. For local debugging, development environment can be enabled by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>, and restarting the application.
-</p>
+    <script src="~/js/site.min.js"></script>
+</body>
+</html>

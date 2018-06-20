@@ -8,12 +8,16 @@
     <title>@ViewData["Title"]</title>
 
         <link rel="stylesheet" href="~/css/site.min.css" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16">
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-            <a class="navbar-brand" href="brcurtidas.com.br">
+            <a class="navbar-brand" href="~/">
                 <img src="~/images/bricon.png" alt="Logotipo BrCurtidas">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,22 +35,22 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 @foreach (var serviceType in socialNetwork.ServiceTypes)
                                 {
-                                    <a class="dropdown-item" href="#">@serviceType.Name</a>
+                                    <a class="dropdown-item" href="@Url.RouteUrl(RouteNames.GetProducts, new {slug = @serviceType.Slug})">@serviceType.Name</a>
                                 }
                             </div>
                         </li>
                     }
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">CONTATO</a>
+                        <a class="nav-link" href="@Url.RouteUrl(RouteNames.ContactPage)">CONTATO</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">TERMOS DE USO</a>
+                        <a class="nav-link" href="@Url.RouteUrl(RouteNames.TermsPage)">TERMOS DE USO</a>
                     </li>
                 </ul>
                 <div class="nav-item">
-                        <div class="nav-link" style="font-size: 20px;"><img src="~/images/whatsapp-icon-oficial.png" style="padding-right: 10px;">(21) 96544-8522</div>
+                        <div class="nav-link" style="font-size: 20px;"><img src="~/images/whatsapp-icon-oficial.png" style="padding-right: 10px;" alt="Ícone do Whatsapp">(21) 96544-8522</div>
                 </div>
             </div>
             </div>
@@ -57,7 +61,7 @@
     </div>
 
     <footer>
-            <a href="#"><img src="~/images/uparrow_icon.png"></a>
+            <a href="#"><img src="~/images/uparrow_icon.png" alt="Ícone de seta para cima"></a>
             <div>© 2016 - 2017 BR Curtidas - Todos os direitos reservados</div>
             <div>Whatsapp: (21) 96544-8522 | Skype: andrebrananjos | E-mail: brcurtidas@brcurtidas.com.br</div>
     </footer>

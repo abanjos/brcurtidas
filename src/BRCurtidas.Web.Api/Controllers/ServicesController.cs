@@ -4,7 +4,7 @@ using AutoMapper;
 using BRCurtidas.Data;
 using BRCurtidas.Web.Api.Models;
 using Microsoft.AspNetCore.Mvc;
-using BRCurtidas.Common;
+using Microsoft.EntityFrameworkCore;
 
 namespace BRCurtidas.Web.Api.Controllers
 {
@@ -23,13 +23,15 @@ namespace BRCurtidas.Web.Api.Controllers
         [HttpGet]
         public IActionResult Get(ServicesRequestModel request)
         {
-            var services = _context.Services.OrderByDescending(s => s.Orders.Count()).AsEnumerable();
+            var services = _context.Products.Include(p => p.ScopedServiceType)
+            .OrderByDescending(s => s.Orders.Count())
+            .AsEnumerable();
 
             if (request.SocialNetwork.HasValue)
-                services = services.Where(s => s.SocialNetwork == request.SocialNetwork);
+                services = services.Where(s => s.ScopedServiceType.SocialNetwork.Id == request.SocialNetwork.Value);
 
             if (request.Scope.HasValue)
-                services = services.Where(s => s.Scope == request.Scope);
+                services = services.Where(s => s.ScopedServiceType.ServiceScope.Id == request.Scope.Value);
 
             var result = services
                 .Skip(request.Offset ?? 0)
@@ -42,20 +44,15 @@ namespace BRCurtidas.Web.Api.Controllers
         [HttpGet("types")]
         public IActionResult GetTypes(ServiceTypesRequestModel request)
         {
-            var types = _context.Services
-                    .Where(s => s.SocialNetwork == request.SocialNetwork)
-                    .GroupBy(s => new Tuple<ServiceType, ServiceScope>(s.Type, s.Scope))
-                    .Where(g => g.Count() > 0)
-                    .Select(g => g.Key);
+            var types = _context.ScopedServiceTypes
+                .Where(s => s.SocialNetwork.Id == request.SocialNetwork)
+                .Select(s => new ServiceTypeResponseModel
+                {
+                    Name = s.Title,
+                    Slug = s.Slug
+                });
 
-            var result = types.Select(type => new ServiceTypeResponseModel
-            {
-                ServiceTypeId = (int)type.Item1,
-                ServiceScopeId = (int)type.Item2,
-                Name = type.Item1.GetName() + " " + type.Item2.GetPluralizedName()
-            });
-
-            return Ok(result);
+            return Ok(types);
         }
     }
 }
