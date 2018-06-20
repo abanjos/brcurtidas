@@ -12,11 +12,10 @@
         <link rel="stylesheet" href="~/css/site.min.css" />
 </head>
 <body>
-
-    <div>
-        <div class="container error-dev">Atenção! A página que você está tentando acessar não existe.
-            <a href="~/">Clique para ir a uma página válida</a>
-            <img src="/images/bricon.png" alt="Ícone BR Curtidas">
+    <img class="brcurtidas-logo-error" src="/images/bricon.png" alt="Ícone BR Curtidas">
+    <div class="container">
+        <div class="error-dev">Atenção! A página que você está tentando acessar não existe.
+            <a href="~/">Clique aqui para ir a uma página válida</a>
         </div>
     </div>
 
@@ -27,7 +26,5 @@
     </footer>
 
     <script src="~/js/site.min.js"></script>
-    @RenderSection("Scripts", required: false)
-
 </body>
 </html>

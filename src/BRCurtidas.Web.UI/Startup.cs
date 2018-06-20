@@ -35,6 +35,7 @@ namespace BRCurtidas.Web.UI
             }
             else
             {
+                app.UseStatusCodePagesWithReExecute("/Home/{0}");
                 app.UseExceptionHandler("/Home/Error");
             }
 

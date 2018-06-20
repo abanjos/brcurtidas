@@ -12,10 +12,15 @@
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
 }
 
+.img-left {
+    float: left;
+    margin: 0 10px 0 0;
+}
 
 
 footer {
     background: #415e41;
+    padding-bottom: 50px;
     color: #ffffff;
     text-align: center;
     padding-top: 100px;
@@ -197,9 +202,37 @@ footer a:first-child{
 .error-dev {
     background: none;
     color: #c02900;
-    margin-top: 100px;
+    margin-top: 20px;
     margin-bottom: 100px;
     text-align: center;
+}
+
+.form-total-price {
+    font-size:17pt; 
+    color:#b30c26;
+}
+
+
+.brcurtidas-logo-error {
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.contato-box {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.service-terms {
+    color: gray;
+    font-family: monospace;
+    font-size: 13pt;
+}
+
+#valor_manual {
+    font-size: 24px;
+    font-weight: 500;
 }
     
 

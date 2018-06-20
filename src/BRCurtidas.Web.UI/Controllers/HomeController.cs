@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System;
 using BRCurtidas.Web.UI.Routes;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BRCurtidas.Web.UI.Controllers
 {
@@ -20,7 +21,6 @@ namespace BRCurtidas.Web.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            throw new Exception();
             var socialNetworks = await _apiClientService.GetSocialNetworksAsync();
             var model = new HomeViewModel { SocialNetworks = socialNetworks.ToArray() };
 
@@ -40,9 +40,16 @@ namespace BRCurtidas.Web.UI.Controllers
             return View(model);
         }
         
+        [AllowAnonymous]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return PartialView(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        [AllowAnonymous]
+        [HttpGet("/Home/404")]
+        public IActionResult Missing()
+        {
+            return PartialView();
         }
     }
 }

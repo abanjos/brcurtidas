@@ -7,9 +7,16 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/BRCurtidas.PagSeguro.Tests/BRCurtidas.PagSeguro.Tests.csproj"
+                "${workspaceFolder}/src/"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "runAll",
+            "command": "npm",
+            "args": [
+                "run", "run-all"
+            ],
         }
     ]
 }
